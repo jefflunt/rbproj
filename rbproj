@@ -1,0 +1,25 @@
+#!/bin/bash
+
+if [ "$#" -ne 2 ]
+then
+  echo "Creates a new ruby project with the specified folder, ruby version, and list of"
+  echo "  gems (optional)."
+  echo
+
+  echo "Usage:"
+  echo "  rbproj <folder> <ruby version> [space-separated list of gems ...]"
+  echo "Ex:"
+  echo "  rbproj code/my_project 2.7.1 colorizer"
+  echo "  ^cmd   ^folder         ^ver  ^install colorizer gem"
+else
+  mkdir -p $1 && \
+  cd $1 &&
+  git init . && \
+  echo "$2" > .ruby-version && \
+  echo "source 'https://rubygems.org'" > Gemfile && \
+  rbenv gemset init && \
+  gem install bundler && \
+  bundle install && \
+  echo -e "\nOK"
+fi
+
