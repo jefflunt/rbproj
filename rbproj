@@ -17,6 +17,7 @@ else
   git init . && \
   echo "$2" > .ruby-version && \
   echo "source 'https://rubygems.org'" > Gemfile && \
+  echo -e ".DS_Store\n.rbenv-gemsets" > .gitignore && \
   rbenv gemset init && \
   gem install bundler && \
   bundle install && \
